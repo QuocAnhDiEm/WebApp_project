@@ -1,0 +1,48 @@
+/* ===== TOÀN BỘ STYLE CHUNG CHO MỌI TRANG ===== */
+:root {
+    --green: #28a745;
+    --orange: #fd7e14;
+}
+
+body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; }
+
+.navbar {
+    background-color: var(--green) !important;
+    padding: 1rem 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Hero banner */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('/images/banner.jpg') center/cover no-repeat fixed;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+.hero h1 { font-size: 4.8rem; font-weight: 900; text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
+.hero p { font-size: 1.7rem; margin: 25px 0; }
+.btn-browse { background: white; color: var(--green); padding: 18px 70px; font-size: 1.6rem; font-weight: bold; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.btn-browse:hover { transform: translateY(-8px); }
+
+/* About & Services */
+.about-box { background: #007bff; color: white; padding: 40px; border-radius: 20px; }
+.services-box { background: white; border: 3px solid #dee2e6; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+.contact-box { background: var(--green); color: white; padding: 25px 70px; border-radius: 50px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 10px 30px rgba(40,167,69,0.4); }
+
+/* Cars page */
+.car-card {
+    transition: all 0.4s;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.car-card:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(0,0,0,0.25); }
+.car-card img { height: 250px; object-fit: cover; }
+.price { font-size: 2.2rem; color: var(--green); font-weight: 900; }
+.btn-book { background: var(--green); color: white; padding: 14px 50px; border-radius: 50px; font-weight: bold; }
+.btn-book:hover { background: #218838; }
