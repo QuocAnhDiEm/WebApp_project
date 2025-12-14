@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark shadow" style="background-color: #28a745;">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center fw-bold fs-3" th:href="@{/}">
+            <img th:src="@{/images/logo.png}" height="55" class="me-3" alt="RentCar Logo">
+            RentCar
+        </a>
+        <div class="d-flex gap-4 text-white fw-semibold">
+            <a th:href="@{/}" class="text-white">Home</a>
+            <a th:href="@{/cars}" class="text-white">Cars</a>
+            <a href="#" class="text-white" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Login Modal đẹp như mockup -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg border-0">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title fw-bold">Welcome Back!</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-5">
+                <form>
+                    <div class="mb-4">
+                        <input type="email" class="form-control form-control-lg" placeholder="Email Address" required>
+                    </div>
+                    <div class="mb-4">
+                        <input type="password" class="form-control form-control-lg" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg w-100 fw-bold">Sign In</button>
+                    <p class="text-center mt-4 text-muted">
+                        Don't have an account? <a href="#" class="text-success fw-bold">Register now</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

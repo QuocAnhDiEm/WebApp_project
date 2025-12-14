@@ -1,0 +1,29 @@
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg border-0 rounded-4">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title fw-bold">Welcome Back!</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-5">
+                <form>
+                    <div class="mb-4">
+                        <input type="email" class="form-control form-control-lg rounded-pill" placeholder="Email" required>
+                    </div>
+                    <div class="mb-4">
+                        <input type="password" class="form-control form-control-lg rounded-pill" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg w-100 rounded-pill fw-bold">Sign In</button>
+                </form>
+                <p class="text-center mt-3">
+                    <small>Don't have an account? 
+                        <a href="#" class="text-success fw-bold" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">
+                            Register now
+                        </a>
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
