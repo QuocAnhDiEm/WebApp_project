@@ -1,0 +1,64 @@
+Create database rentcar_db;
+use rentcar_db;
+
+-- =========================
+-- USERS TABLE
+-- =========================
+CREATE TABLE users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(20),
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL
+);
+
+-- =========================
+-- CARS TABLE
+-- =========================
+CREATE TABLE cars (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    type VARCHAR(50),
+    price_per_day DOUBLE NOT NULL,
+    image VARCHAR(255),
+    available BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+-- =========================
+-- BOOKINGS TABLE
+-- =========================
+CREATE TABLE bookings (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    car_id BIGINT NOT NULL,
+    pick_up_date DATE NOT NULL,
+    drop_off_date DATE NOT NULL,
+    total_price DOUBLE NOT NULL,
+    status VARCHAR(50) NOT NULL,
+
+    CONSTRAINT fk_booking_user
+        FOREIGN KEY (user_id) REFERENCES users(id),
+
+    CONSTRAINT fk_booking_car
+        FOREIGN KEY (car_id) REFERENCES cars(id)
+);
+
+INSERT INTO users (name, email, phone, password, role)
+VALUES
+('Admin', 'admin@gmail.com', '0900000000',
+ '$2a$10$7QF1E6IYw0gU6Zp5yYFJKeNWh8s4hD5G1nJx4nY5Ck8Q7zP8QFZ1a',
+ 'ROLE_ADMIN'),
+
+('Test User', 'user@gmail.com', '0911111111',
+ '$2a$10$7QF1E6IYw0gU6Zp5yYFJKeNWh8s4hD5G1nJx4nY5Ck8Q7zP8QFZ1a',
+ 'ROLE_USER');
+
+INSERT INTO cars (name, type, price_per_day, image, available)
+VALUES
+('Toyota Vios', 'Sedan', 50, '/images/cars/vios.jpg', TRUE),
+('Honda City', 'Sedan', 55, '/images/cars/city.jpg', TRUE),
+('Ford Ranger', 'Pickup', 80, '/images/cars/ranger.jpg', TRUE),
+('Mazda CX-5', 'SUV', 90, '/images/cars/cx5.jpg', TRUE),
+('Kia Morning', 'Hatchback', 40, '/images/cars/morning.jpg', TRUE),
+('Hyundai SantaFe', 'SUV', 100, '/images/cars/santafe.jpg', TRUE);
