@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Booking Confirmed</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #14b44b;
+            --muted: #f1f2f4;
+            --card-bg: #fff;
+            --shadow: 0 6px 18px rgba(22, 27, 34, 0.08);
+            --panel-pad: 18px;
+            --max-w: 760px;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: Inter, system-ui, Arial, sans-serif
+        }
+
+        body {
+            margin: 0;
+            background: #efeff2;
+            color: #222
+        }
+
+        .topbar {
+            background: var(--green);
+            color: #fff;
+            padding: 14px 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-weight: 600
+        }
+
+        .nav a {
+            color: #e8f8ef;
+            margin-left: 18px;
+            text-decoration: none;
+            font-size: 14px
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 28px auto;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .card {
+            max-width: var(--max-w);
+            margin: 48px auto;
+            background: var(--card-bg);
+            border-radius: 4px;
+            box-shadow: var(--shadow);
+            padding: 34px;
+        }
+
+        .center {
+            text-align: center;
+            padding-bottom: 8px;
+        }
+
+        .check {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #8ee0a7;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            margin: 6px 0 6px;
+            font-size: 20px
+        }
+
+        p.lead {
+            margin: 0;
+            color: #666;
+            font-size: 14px
+        }
+
+        hr.sep {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 22px 0
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333
+        }
+
+        .details {
+            background: #fafafa;
+            border-radius: 2px;
+            padding: 18px
+        }
+
+        .row {
+            display: flex;
+            gap: 18px
+        }
+
+        .col {
+            flex: 1
+        }
+
+        .panel {
+            border-radius: 4px;
+            padding: var(--panel-pad);
+            margin-bottom: 14px
+        }
+
+        .panel.green {
+            background: #effff3
+        }
+
+        .panel.purple {
+            background: #fbf8ff
+        }
+
+        .panel.blue {
+            background: #eef6ff
+        }
+
+        .small {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 6px
+        }
+
+        .k {
+            font-weight: 600;
+            color: #333
+        }
+
+        .v {
+            color: #444
+        }
+
+        .two-cols {
+            display: grid;
+            grid-template-columns:1fr 1fr;
+            gap: 18px
+        }
+
+        .next-steps {
+            font-size: 14px;
+            color: #555;
+            margin-top: 6px
+        }
+
+        .footer-actions {
+
+            display: flex;
+            gap: 12px;
+            margin-top: 18px
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border-radius: 4px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        .btn.green {
+            background: var(--green);
+            color: #fff
+        }
+
+        .btn.light {
+            background: #f2f2f2;
+            color: #333
+        }
+
+        @media (max-width: 700px) {
+            .two-cols {
+                grid-template-columns:1fr
+            }
+
+            .card {
+                padding: 20px
+            }
+
+            .page {
+                padding: 0 12px
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="topbar">
+    <a class="navbar-brand d-flex align-items-center fw-bold fs-3" th:href="@{/}">
+        <img th:src="@{/images/logo-Photoroom.png}" height="200" class="me-3" alt="RentCar">
+        RentCar
+    </a>
+    <div class="nav">
+        <a href="#">Home</a>
+        <a href="#">Cars</a>
+        <a href="#">Login</a>
+    </div>
+</div>
+
+<div class="page">
+    <div class="card" role="main">
+        <div class="center">
+            <div class="check" aria-hidden="true">
+                <!-- simple check svg -->
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+            </div>
+            <h1>Booking Confirmed!</h1>
+            <p class="lead">Thank you for your reservation. We've sent a confirmation email to your address.</p>
+        </div>
+
+        <hr class="sep">
+
+        <div class="section-title">Booking Details</div>
+
+        <div class="panel green">
+            <div class="two-cols">
+                <div>
+                    <div class="small">Vehicle Information</div>
+                    <div class="k">Car Model</div>
+                    <div class="v">Luxury Sports Car</div>
+                    <div style="height:10px"></div>
+                    <div class="k">Rental Price</div>
+                    <div class="v">$150/day</div>
+                </div>
+                <div>
+                    <div class="small" style="visibility:hidden">placeholder</div>
+                    <div class="k">Category</div>
+                    <div class="v">Sports</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel purple">
+            <div class="two-cols">
+                <div>
+                    <div class="small">Personal Information</div>
+                    <div class="k">Name</div>
+                    <div class="v">anh vu</div>
+                    <div style="height:10px"></div>
+                    <div class="k">Phone Number</div>
+                    <div class="v">0935196548</div>
+                </div>
+                <div>
+                    <div style="height:22px"></div>
+                    <div class="k">Email</div>
+                    <div class="v">anh79nuid8@gmail.com</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel blue">
+            <div class="two-cols">
+                <div>
+                    <div class="small">Rental Details</div>
+                    <div class="k">Pick-up Location</div>
+                    <div class="v">24/7 phan dang luu phuong 5 phu nhuan ho chi minh</div>
+                    <div style="height:10px"></div>
+                    <div class="k">Pick-up Date</div>
+                    <div class="v">2025-12-03</div>
+                </div>
+                <div>
+                    <div style="height:22px"></div>
+                    <div class="k">Drop-off Location</div>
+                    <div class="v">87 phan Xich long</div>
+                    <div style="height:10px"></div>
+                    <div class="k">Drop-off Date</div>
+                    <div class="v">2025-12-05</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top:6px">
+            <div class="small">Next Steps</div>
+            <ul class="next-steps">
+                <li>Check your email for the booking confirmation and receipt</li>
+                <li>Bring a valid driver's licence and the credit card used for booking</li>
+                <li>Arrive at the pick-up location 15 minutes before your scheduled time</li>
+            </ul>
+        </div>
+
+        <div class="footer-actions">
+            <button class="btn green">Back to Home</button>
+            <button class="btn light">Print Confirmation</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
