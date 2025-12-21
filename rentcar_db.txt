@@ -1,5 +1,9 @@
-Create database rentcar_db;
-use rentcar_db;
+-- Drop existing database if exists
+DROP DATABASE IF EXISTS rentcar_db;
+
+-- Create database
+CREATE DATABASE rentcar_db;
+USE rentcar_db;
 
 -- =========================
 -- USERS TABLE
@@ -18,11 +22,13 @@ CREATE TABLE users (
 -- =========================
 CREATE TABLE cars (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    carId BIGINT NULL,
     name VARCHAR(100) NOT NULL,
     type VARCHAR(50),
     price_per_day DOUBLE NOT NULL,
     image VARCHAR(255),
-    available BOOLEAN NOT NULL DEFAULT TRUE
+    available BOOLEAN NOT NULL DEFAULT TRUE,
+    CONSTRAINT fk_car_parent FOREIGN KEY (carId) REFERENCES cars(id)
 );
 
 -- =========================
@@ -36,20 +42,18 @@ CREATE TABLE bookings (
     drop_off_date DATE NOT NULL,
     total_price DOUBLE NOT NULL,
     status VARCHAR(50) NOT NULL,
-
-    CONSTRAINT fk_booking_user
-        FOREIGN KEY (user_id) REFERENCES users(id),
-
-    CONSTRAINT fk_booking_car
-        FOREIGN KEY (car_id) REFERENCES cars(id)
+    CONSTRAINT fk_booking_user FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_booking_car FOREIGN KEY (car_id) REFERENCES cars(id)
 );
 
+-- =========================
+-- SAMPLE DATA
+-- =========================
 INSERT INTO users (name, email, phone, password, role)
 VALUES
 ('Admin', 'admin@gmail.com', '0900000000',
  '$2a$10$7QF1E6IYw0gU6Zp5yYFJKeNWh8s4hD5G1nJx4nY5Ck8Q7zP8QFZ1a',
  'ROLE_ADMIN'),
-
 ('Test User', 'user@gmail.com', '0911111111',
  '$2a$10$7QF1E6IYw0gU6Zp5yYFJKeNWh8s4hD5G1nJx4nY5Ck8Q7zP8QFZ1a',
  'ROLE_USER');
@@ -63,4 +67,3 @@ VALUES
 ('Ford Transit', 'Van', 150, '/images/cars/transit.jpg', TRUE),
 ('Toyota Vios', 'Sedan', 65, '/images/cars/vios.jpg', TRUE),
 ('Xpander', 'MPV', 90, '/images/cars/xpander.jpg', TRUE);
-
