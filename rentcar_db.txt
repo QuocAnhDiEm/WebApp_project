@@ -56,9 +56,11 @@ VALUES
 
 INSERT INTO cars (name, type, price_per_day, image, available)
 VALUES
-('Toyota Vios', 'Sedan', 50, '/images/cars/vios.jpg', TRUE),
-('Honda City', 'Sedan', 55, '/images/cars/city.jpg', TRUE),
-('Ford Ranger', 'Pickup', 80, '/images/cars/ranger.jpg', TRUE),
-('Mazda CX-5', 'SUV', 90, '/images/cars/cx5.jpg', TRUE),
-('Kia Morning', 'Hatchback', 40, '/images/cars/morning.jpg', TRUE),
-('Hyundai SantaFe', 'SUV', 100, '/images/cars/santafe.jpg', TRUE);
+('BMW S1000RR', 'Moto', 180, '/images/cars/s1000rr.jpg', TRUE),
+('Kia Carnival', 'MPV', 120, '/images/cars/carnival.jpg', TRUE),
+('Toyota Hilux', 'Pickup', 95, '/images/cars/hilux.jpg', TRUE),
+('Audi R7', 'Sports', 220, '/images/cars/r7.jpg', TRUE),
+('Ford Transit', 'Van', 150, '/images/cars/transit.jpg', TRUE),
+('Toyota Vios', 'Sedan', 65, '/images/cars/vios.jpg', TRUE),
+('Xpander', 'MPV', 90, '/images/cars/xpander.jpg', TRUE);
+
