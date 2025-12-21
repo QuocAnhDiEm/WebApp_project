@@ -21,9 +21,17 @@ public class CarController {
     }
 
     // Show booking form
-    @GetMapping("/cars/book/{id}")
+   @GetMapping("/cars/book/{id}")
     public String bookingForm(@PathVariable Long id, Model model) {
-        model.addAttribute("car", carService.getCarById(id));
+        var car = carService.getCarById(id);
+
+        if (car == null) {
+            // Redirect or show an error page if the car does not exist
+            return "redirect:/cars"; 
+        }
+
+        model.addAttribute("car", car);
         return "car/booking-form";
     }
+
 }

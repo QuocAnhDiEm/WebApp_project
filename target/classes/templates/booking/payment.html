@@ -193,7 +193,10 @@
             border-radius: 6px;
             border: 0;
             cursor: pointer;
-            font-weight: 700
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
 
         .btn.confirm {
@@ -220,125 +223,147 @@
     </style>
 </head>
 <body>
-<div class="topbar">
-    <a class="navbar-brand d-flex align-items-center fw-bold fs-3" th:href="@{/}">
-        <img th:src="@{/images/logo-Photoroom.png}" height="200" class="me-3" alt="RentCar">
-        RentCar
-    </a>
-    <div class="nav">
-        <a href="#">Home</a>
-        <a href="#">Cars</a>
-        <a href="#">Login</a>
-    </div>
-</div>
-
-<div class="page">
-
-    <a class="back-link" th:href="@{/booking}">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="margin-right:8px" aria-hidden="true">
-            <path d="M15 18l-6-6 6-6" stroke="#14b44b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Back to Booking
-    </a>
-
-    <div class="card" role="main">
-        <div class="card-head">
-            <div class="icon" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path d="M3 10h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8z" stroke="#16a34a" stroke-width="1.6"
-                          stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M7 10V7a5 5 0 0 1 10 0v3" stroke="#16a34a" stroke-width="1.6" stroke-linecap="round"
-                          stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <h2>Payment Method</h2>
+    <div class="topbar">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/images/logo-Photoroom.png}" height="50" alt="RentCar">
+            RentCar
+        </a>
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="#">Cars</a>
+            <a href="#">Login</a>
         </div>
+    </div>
 
-        <div class="summary">
-            <div style="font-size:13px;color:#374151;font-weight:600;margin-bottom:8px">Booking Summary</div>
-            <div class="summary-grid">
-                <div>
-                    <div class="summary-row">
-                        <div>
-                            <div class="label">Car</div>
-                            <div class="value" >Luxury Sports Car</div>
-                        </div>
-                        <div style="text-align:right">
-                            <div class="label">Price</div>
-                            <div class="value price" >$150/day</div>
-                        </div>
-                    </div>
+    <div class="page">
+        <a class="back-link" th:href="@{/cars}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="margin-right:8px" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" stroke="#14b44b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back to Cars
+        </a>
 
-                    <div class="summary-row">
-                        <div>
-                            <div class="label">Customer</div>
-                            <div class="value" >anh vu</div>
-                        </div>
-                        <div style="text-align:right">
-                            <div class="label">Phone</div>
-                            <div class="value" >0935196548</div>
-                        </div>
-                    </div>
+        <div class="card" role="main">
+            <div class="card-head">
+                <div class="icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 10h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8z" stroke="#16a34a" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 10V7a5 5 0 0 1 10 0v3" stroke="#16a34a" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round"/>
+                    </svg>
                 </div>
+                <h2>Payment Method</h2>
+            </div>
 
-                <div>
-                    <div class="summary-row">
-                        <div>
-                            <div class="label">Pick-up Date</div>
-                            <div class="value" >2025-12-03</div>
-                        </div>
-                        <div style="text-align:right">
-                            <div class="label">Drop-off Date</div>
-                            <div class="value" >2025-12-05</div>
-                        </div>
-                    </div>
-
-                    <div class="summary-row">
-                        <div>
-                            <div class="label">Pick-up Location</div>
-                            <div class="value" >24/7 phan dang luu phuong 5 phu
-                                nhuan
+            <div class="summary">
+                <div style="font-size:13px;color:#374151;font-weight:600;margin-bottom:8px">Booking Summary</div>
+                <div class="summary-grid">
+                    <div>
+                        <div class="summary-row">
+                            <div>
+                                <div class="label">Car</div>
+                                <div class="value" th:text="${booking.car.name}">Luxury Sports Car</div>
+                            </div>
+                            <div style="text-align:right">
+                                <div class="label">Price/Day</div>
+                                <div class="value price" th:text="'$' + ${booking.car.pricePerDay}">$150</div>
                             </div>
                         </div>
-                        <div style="text-align:right">
-                            <div class="label">Drop-off Location</div>
-                            <div class="value" >87 phan Xich long</div>
+
+                        <div class="summary-row">
+                            <div>
+                                <div class="label">Customer</div>
+                                <div class="value" th:text="${booking.firstName + ' ' + booking.lastName}">John Doe</div>
+                            </div>
+                            <div style="text-align:right">
+                                <div class="label">Phone</div>
+                                <div class="value" th:text="${booking.phone}">+1234567890</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-row" th:if="${booking.email}">
+                            <div>
+                                <div class="label">Email</div>
+                                <div class="value" th:text="${booking.email}">email@example.com</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="summary-row">
+                            <div>
+                                <div class="label">Pick-up Date</div>
+                                <div class="value" th:text="${#temporals.format(booking.pickUpDate, 'yyyy-MM-dd')}">2025-12-03</div>
+                            </div>
+                            <div style="text-align:right">
+                                <div class="label">Drop-off Date</div>
+                                <div class="value" th:text="${#temporals.format(booking.dropOffDate, 'yyyy-MM-dd')}">2025-12-05</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-row">
+                            <div>
+                                <div class="label">Pick-up Location</div>
+                                <div class="value" th:text="${booking.pickUpLocation}">Location</div>
+                            </div>
+                            <div style="text-align:right">
+                                <div class="label">Drop-off Location</div>
+                                <div class="value" th:text="${booking.dropOffLocation}">Location</div>
+                            </div>
+                        </div>
+
+                        <div class="summary-row" style="border-top: 2px solid #14b44b; padding-top: 12px; margin-top: 8px;">
+                            <div>
+                                <div class="label">Total Days</div>
+                                <div class="value" th:text="${booking.totalDays ?: 'N/A'}">2</div>
+                            </div>
+                            <div style="text-align:right">
+                                <div class="label">Total Price</div>
+                                <div class="value price" style="font-size: 18px;" th:text="'$' + ${booking.totalPrice}">$300</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="cash-panel" style="margin-bottom:8px">
-            <div class="icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <rect x="2" y="5" width="20" height="14" rx="2" stroke="#16a34a" stroke-width="1.6"/>
-                    <path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0z" stroke="#16a34a" stroke-width="1.6"
-                          stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+                <div th:if="${booking.notes}" style="margin-top: 12px; padding-top: 12px; border-top: 1px dashed rgba(0,0,0,0.06);">
+                    <div class="label">Additional Notes</div>
+                    <div class="value" style="margin-top: 4px;" th:text="${booking.notes}">Notes here</div>
+                </div>
             </div>
-            <div style="font-weight:700;margin-top:10px">Cash Payment</div>
-            <p style="max-width:760px">You will pay in cash when you pick up the vehicle at our location. Please bring
-                the exact amount or we can provide change.</p>
-        </div>
 
-        <div class="info-block">
-            <div style="font-weight:600;margin-bottom:8px">Important Information</div>
-            <ul>
-                <li>Payment must be made in cash upon vehicle pick-up</li>
-                <li>Please bring a valid driver's license</li>
-                <li>A security deposit may be required</li>
-            </ul>
-        </div>
-
-        <form th:action="@{/booking/confirm}" method="post">
-            <div class="actions">
-                <a th:href="@{/booking/success}" class="btn confirm">
-                    Confirm Booking
-                </a>
+            <div class="cash-panel" style="margin-bottom:8px">
+                <div class="icon" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <rect x="2" y="5" width="20" height="14" rx="2" stroke="#16a34a" stroke-width="1.6"/>
+                        <path d="M9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0z" stroke="#16a34a" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div style="font-weight:700;margin-top:10px">Cash Payment</div>
+                <p style="max-width:760px">You will pay in cash when you pick up the vehicle at our location. Please bring
+                    the exact amount or we can provide change.</p>
             </div>
-        </form>
+
+            <div class="info-block">
+                <div style="font-weight:600;margin-bottom:8px">Important Information</div>
+                <ul>
+                    <li>Payment must be made in cash upon vehicle pick-up</li>
+                    <li>Please bring a valid driver's license</li>
+                    <li>A security deposit may be required</li>
+                </ul>
+            </div>
+
+            <!-- Form to confirm booking -->
+            <form th:action="@{/booking/confirm}" method="post">
+                <input type="hidden" name="bookingId" th:value="${booking.id}" />
+                <div class="actions">
+                    <button type="submit" class="btn confirm">
+                        Confirm Booking
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 </body>
 </html>

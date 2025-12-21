@@ -1,53 +1,113 @@
-package com.example.car_rent.controller;   // PHẢI CÓ "rent" Ở CUỐI
+package com.example.car_rent.controller;
 
+import com.example.car_rent.dto.BookingRequestDTO;
+import com.example.car_rent.entity.Booking;
+import com.example.car_rent.entity.Car;
+import com.example.car_rent.entity.User;
+import com.example.car_rent.service.BookingService;
+import com.example.car_rent.service.CarService;
+import com.example.car_rent.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
-
 @Controller
+@RequestMapping("/booking")
 public class BookingController {
 
-@GetMapping("/booking/form")
-    public String bookingForm(
-            @RequestParam("car") int carId,
-            Model model,
-            Authentication authentication) {
+    private final CarService carService;
+    private final BookingService bookingService;
+    private final UserService userService;
 
-        // 🔐 Nếu chưa đăng nhập → redirect login
+    public BookingController(CarService carService, BookingService bookingService, UserService userService) {
+        this.carService = carService;
+        this.bookingService = bookingService;
+        this.userService = userService;
+    }
+
+    // Show booking form
+    @GetMapping("/form")
+    public String bookingForm(@RequestParam("car") Long carId, Model model, Authentication authentication) {
         if (authentication == null || !authentication.isAuthenticated()) {
             return "redirect:/auth/login";
         }
 
-        model.addAttribute("carId", carId);
+        Car car = carService.getCarById(carId);
+        if (car == null) {
+            model.addAttribute("errorMessage", "Car not found!");
+            return "redirect:/cars";
+        }
+
+        model.addAttribute("car", car);
+        model.addAttribute("carId", car.getId());
         model.addAttribute("userEmail", authentication.getName());
+        model.addAttribute("bookingDTO", new BookingRequestDTO());
 
         return "booking/booking-form";
     }
 
-    @GetMapping("/booking/payment")
-    public String payment(
-            @RequestParam("car") int carId,
-            Model model,
-            Authentication authentication) {
+    // Handle booking submission
+    @PostMapping("/payment")
+    public String submitBooking(@Valid @ModelAttribute("bookingDTO") BookingRequestDTO bookingDTO,
+                                BindingResult result,
+                                Authentication authentication,
+                                Model model) {
 
         if (authentication == null || !authentication.isAuthenticated()) {
             return "redirect:/auth/login";
         }
 
-        model.addAttribute("carId", carId);
-        model.addAttribute("userEmail", authentication.getName());
+        // Check for validation errors
+        if (result.hasErrors()) {
+            // Re-fetch car details for the form
+            Car car = carService.getCarById(bookingDTO.getCarId());
+            model.addAttribute("car", car);
+            model.addAttribute("carId", car.getId());
+            return "booking/booking-form";
+        }
 
+        User user = userService.findByEmail(authentication.getName());
+        
+        // Create booking
+        Booking booking = bookingService.createBooking(bookingDTO, user);
+        
+        // Check if booking creation failed
+        if (booking == null) {
+            model.addAttribute("errorMessage", "Car not found or booking failed");
+            return "redirect:/cars";
+        }
+
+        // Booking succeeded, go to payment page
+        model.addAttribute("booking", booking);
         return "booking/payment";
     }
 
-    @GetMapping("/booking/success")
-    public String success(Authentication authentication) {
+    // Confirm booking
+    @PostMapping("/confirm")
+    public String confirmBooking(@RequestParam Long bookingId, Model model) {
+        // Update booking status to confirmed and mark car unavailable
+        bookingService.confirmBooking(bookingId);
+        
+        // Get booking details for success page
+        Booking booking = bookingService.getBookingById(bookingId);
+        model.addAttribute("booking", booking);
+        
+        return "booking/success";
+    }
+
+    // Optional: View booking history
+    @GetMapping("/history")
+    public String bookingHistory(Authentication authentication, Model model) {
         if (authentication == null || !authentication.isAuthenticated()) {
             return "redirect:/auth/login";
         }
-        return "booking/success";
+
+        User user = userService.findByEmail(authentication.getName());
+        model.addAttribute("bookings", bookingService.getBookingsByUser(user));
+        
+        return "booking/history";
     }
 }
