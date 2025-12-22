@@ -48,14 +48,16 @@ CREATE TABLE bookings (
 
 -- =========================
 -- SAMPLE DATA
+--admin123
+--test123
 -- =========================
 INSERT INTO users (name, email, phone, password, role)
 VALUES
 ('Admin', 'admin@gmail.com', '0900000000',
- '$2a$10$7QF1E6IYw0gU6Zp5yYFJKeNWh8s4hD5G1nJx4nY5Ck8Q7zP8QFZ1a',
+ '$2a$10$ADmTtmL6sAC2ZkMNZfWiJOIrHv8v27/N7Ae.JDzC4HuILrYnjGuOm',
  'ROLE_ADMIN'),
 ('Test User', 'user@gmail.com', '0911111111',
- '$2a$10$7QF1E6IYw0gU6Zp5yYFJKeNWh8s4hD5G1nJx4nY5Ck8Q7zP8QFZ1a',
+ '$2a$10$mgvn715eNG/.4nlkXhvWqOV5HXJqTyGhGtaRarAjd0jIkj/bZe7Oy',
  'ROLE_USER');
 
 INSERT INTO cars (name, type, price_per_day, image, available)
