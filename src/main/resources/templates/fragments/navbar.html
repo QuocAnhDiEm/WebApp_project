@@ -18,9 +18,8 @@
         <!-- Show username + Logout if authenticated -->
         <span th:if="${#authorization.expr('isAuthenticated()')}">
             Hello, <strong th:text="${#authentication.name}">User</strong> |
-            <form th:action="@{/logout}" method="post" style="display:inline">
-                <button type="submit" class="btn btn-link nav-link" 
-                        style="display:inline; padding:0; border:none; background:none;">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">
                     Logout
                 </button>
             </form>
