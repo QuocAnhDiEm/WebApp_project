@@ -68,4 +68,4 @@ VALUES
 ('Audi R7', 'Sports', 220, '/images/cars/r7.jpg', TRUE),
 ('Ford Transit', 'Van', 150, '/images/cars/transit.jpg', TRUE),
 ('Toyota Vios', 'Sedan', 65, '/images/cars/vios.jpg', TRUE),
-('Xpander', 'MPV', 90, '/images/cars/xpander.jpg', TRUE);
+('Mitsubishi Xpander', 'MPV', 90, '/images/cars/xpander.jpg', TRUE);
