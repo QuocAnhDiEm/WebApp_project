@@ -19,43 +19,55 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
 
+            // ✅ AUTHORIZATION (ONLY ONCE)
             .authorizeHttpRequests(auth -> auth
+                // 🌍 Public pages
                 .requestMatchers(
                     "/", 
                     "/cars",
-                    "/auth/login",      // ✅ login page
-                    "/auth/register",   // ✅ register page
-                    "/css/**", 
-                    "/js/**", 
+                    "/auth/login",
+                    "/auth/register",
+                    "/css/**",
+                    "/js/**",
                     "/images/**"
                 ).permitAll()
+
+                // 🔐 Admin only
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                // 👤 Logged-in users
                 .requestMatchers("/booking/**").authenticated()
-                .anyRequest().permitAll()
+
+                // 🔚 MUST BE LAST
+                .anyRequest().authenticated()
             )
 
+            // 🔐 Login
             .formLogin(form -> form
-                .loginPage("/auth/login")     // ✅ GET login page
-                .loginProcessingUrl("/login")// ✅ POST form action
+                .loginPage("/auth/login")
+                .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/", true)
                 .failureUrl("/auth/login?error")
                 .permitAll()
             )
 
+            // 🚪 Logout
             .logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
+                .permitAll()
             );
 
         return http.build();
     }
 
-    // 🔐 PASSWORD ENCODER
+    // 🔐 Password encoder (bcrypt)
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // 🔑 AUTHENTICATION MANAGER
+    // 🔑 Authentication manager
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration config) throws Exception {

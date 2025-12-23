@@ -1,0 +1,74 @@
+/* =========================
+   NAVBAR STYLES
+========================= */
+.topbar {
+    background: var(--bg-navbar, #14b44b);
+    color: #fff;
+    padding: 14px 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* ensures responsiveness */
+}
+
+/* Navbar brand/logo */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Navbar links container */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* uniform spacing between links/buttons */
+    flex-wrap: wrap;
+}
+
+/* Standard links */
+.nav a {
+    color: #e9f9ee;
+    text-decoration: none;
+    font-size: 14px;
+    transition: opacity 0.2s ease;
+}
+
+.nav a:hover {
+    opacity: 0.85;
+}
+
+/* Inline username + logout */
+.nav span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #e9f9ee;
+}
+
+/* Logout button inside span */
+.nav span button {
+    background: transparent;
+    border: none;
+    color: #e9f9ee;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    transition: opacity 0.2s ease;
+}
+
+.nav span button:hover {
+    opacity: 0.85;
+}
+
+.theme-toggle { 
+    margin-left: 16px; 
+    background: transparent; 
+    border: 0; 
+    color: #fff;
+    font-size: 16px; 
+    cursor: pointer; }

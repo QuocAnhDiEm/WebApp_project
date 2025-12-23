@@ -1,0 +1,41 @@
+/* ================= HERO SECTION ================= */
+
+.hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("/images/banner.jpg") center / cover no-repeat;
+}
+
+/* ================= ABOUT & SERVICES ================= */
+
+.about-box {
+    background-color: var(--bs-primary);
+    color: #ffffff;
+    padding: 3rem;
+    border-radius: 1rem;
+}
+
+.services-box {
+    background-color: #ffffff;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.services-box ul li {
+    margin-bottom: 0.75rem;
+}
+
+/* ================= CONTACT BADGE ================= */
+
+.contact-badge {
+    background-color: #28a745;
+    color: #ffffff;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    display: inline-block;
+}
