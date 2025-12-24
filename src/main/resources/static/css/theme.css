@@ -7,31 +7,25 @@
     --bg-main: #f5f6f8;
     --bg-card: #ffffff;
     --bg-navbar: #14b44b;
-
     --text-main: #111111;
     --text-muted: #6b7280;
     --text-invert: #ffffff;
-
     --border-color: #e5e7eb;
 }
 
-/* =========================
-   DARK MODE VARIABLES
-========================= */
+/* Dark mode */
 html[data-theme="dark"] {
     --bg-main: #0b1220;
     --bg-card: #111827;
     --bg-navbar: #020617;
-
     --text-main: #e5e7eb;
     --text-muted: #9ca3af;
     --text-invert: #ffffff;
-
     --border-color: #334155;
 }
 
 /* =========================
-   GLOBAL FORCE (DARK MODE)
+   GLOBAL (DARK MODE)
 ========================= */
 
 html[data-theme="dark"] body {
@@ -39,7 +33,6 @@ html[data-theme="dark"] body {
     color: var(--text-main) !important;
 }
 
-/* FORCE ALL TEXT */
 html[data-theme="dark"] * {
     color: var(--text-main) !important;
     border-color: var(--border-color) !important;
@@ -48,6 +41,7 @@ html[data-theme="dark"] * {
 /* =========================
    NAVBAR
 ========================= */
+
 html[data-theme="dark"] .topbar,
 html[data-theme="dark"] nav,
 html[data-theme="dark"] .navbar {
@@ -60,223 +54,20 @@ html[data-theme="dark"] nav a {
 }
 
 /* =========================
-   HERO SECTION (HOMEPAGE)
+   HERO SECTION
 ========================= */
-html[data-theme="dark"] .hero,
-html[data-theme="dark"] .hero * {
-    color: #ffffff !important;
-}
 
-/* =========================
-   CARDS / PANELS / LOGIN BOX
-========================= */
-html[data-theme="dark"] .card,
-html[data-theme="dark"] .login-box,
-html[data-theme="dark"] .auth-box,
-html[data-theme="dark"] .summary,
-html[data-theme="dark"] .info-panel,
-html[data-theme="dark"] .info-block,
-html[data-theme="dark"] .container > div {
-    background: var(--bg-card) !important;
-}
-
-/* =========================
-   HEADINGS
-========================= */
-html[data-theme="dark"] h1,
-html[data-theme="dark"] h2,
-html[data-theme="dark"] h3,
-html[data-theme="dark"] h4,
-html[data-theme="dark"] h5,
-html[data-theme="dark"] h6 {
-    color: #ffffff !important;
-}
-
-/* =========================
-   MUTED TEXT
-========================= */
-html[data-theme="dark"] small,
-html[data-theme="dark"] .text-muted,
-html[data-theme="dark"] label,
-html[data-theme="dark"] .label,
-html[data-theme="dark"] .subtitle {
-    color: var(--text-muted) !important;
-}
-
-/* =========================
-   FORMS (INPUTS FIX)
-========================= */
-html[data-theme="dark"] input,
-html[data-theme="dark"] textarea,
-html[data-theme="dark"] select {
-    background: #020617 !important;
-    color: #e5e7eb !important;
-    border: 1px solid var(--border-color) !important;
-}
-
-html[data-theme="dark"] input::placeholder,
-html[data-theme="dark"] textarea::placeholder {
-    color: #94a3b8 !important;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-html[data-theme="dark"] .btn,
-html[data-theme="dark"] button {
-    color: #ffffff !important;
-}
-
-html[data-theme="dark"] .btn-success {
-    background: #22c55e !important;
-    border-color: #22c55e !important;
-}
-
-html[data-theme="dark"] .btn-primary {
-    background: #2563eb !important;
-    border-color: #2563eb !important;
-}
-
-/* =========================
-   LINKS
-========================= */
-html[data-theme="dark"] a {
-    color: #38bdf8 !important;
-}
-
-html[data-theme="dark"] a:hover {
-    color: #7dd3fc !important;
-}
-
-/* =========================
-   TABLES (ADMIN DASHBOARD)
-========================= */
-html[data-theme="dark"] table {
-    background: var(--bg-card) !important;
-}
-
-html[data-theme="dark"] th {
-    color: #ffffff !important;
-    background: #020617 !important;
-}
-
-html[data-theme="dark"] td {
-    color: var(--text-main) !important;
-}
-
-/* =========================
-   PRICE / GREEN TEXT
-========================= */
-html[data-theme="dark"] .price,
-html[data-theme="dark"] .info-title,
-html[data-theme="dark"] .text-success {
-    color: #22c55e !important;
-}
-/* =========================
-   DARK MODE OVERRIDES
-   ========================= */
-html[data-theme="dark"] body {
-    background-color: var(--bg-main) !important;
-}
-
-html[data-theme="dark"] .auth-container {
-    background: var(--bg-card) !important;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.6) !important;
-}
-
-/* Headings */
-html[data-theme="dark"] .auth-container h2 {
-    color: #ffffff !important;
-}
-
-/* Inputs */
-html[data-theme="dark"] .auth-container input {
-    background: #020617 !important;
-    color: #e5e7eb !important;
-    border: 1px solid var(--border-color) !important;
-}
-
-html[data-theme="dark"] .auth-container input::placeholder {
-    color: #94a3b8 !important;
-}
-
-/* Text */
-html[data-theme="dark"] .auth-container p {
-    color: var(--text-muted) !important;
-}
-
-/* Links */
-html[data-theme="dark"] .auth-container a {
-    color: #38bdf8 !important;
-}
-/* =========================
-   HOME
-   ========================= */
-/* ================= HERO SECTION ================= */
 .hero {
     height: 90vh;
     display: flex;
     align-items: center;
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("/images/banner.jpg") center / cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("/images/banner.jpg") center / cover no-repeat;
     color: #ffffff !important;
 }
 
-html[data-theme="dark"] .hero {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url("/images/banner.jpg") center / cover no-repeat !important;
-    color: #e5e7eb !important;
-}
 
-/* ================= ABOUT & SERVICES ================= */
-.about-box {
-    background-color: var(--bs-primary) !important;
-    color: #ffffff !important;
-    padding: 3rem;
-    border-radius: 1rem;
-}
 
-html[data-theme="dark"] .about-box {
-    background-color: #1f2937 !important; /* dark gray */
-    color: #e5e7eb !important;
-}
-
-.services-box {
-    background-color: #ffffff !important;
-    padding: 3rem;
-    border-radius: 1rem;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
-    color: #111 !important;
-}
-
-html[data-theme="dark"] .services-box {
-    background-color: #111827 !important; /* dark panel */
-    color: #e5e7eb !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
-}
-
-.services-box ul li {
-    margin-bottom: 0.75rem;
-}
-
-/* ================= CONTACT BADGE ================= */
-.contact-badge {
-    background-color: #28a745 !important;
-    color: #ffffff !important;
-    padding: 1rem 2.5rem;
-    border-radius: 999px;
-    font-weight: 600;
-    display: inline-block;
-}
-
-html[data-theme="dark"] .contact-badge {
-    background-color: #16a34a !important; /* darker green */
-    color: #e5e7eb !important;
-}
-
-/* ================= LINKS & BUTTONS SPECIFIC TO HOME ================= */
 .hero .btn {
     color: #111 !important;
     background-color: #ffffff !important;
@@ -289,30 +80,228 @@ html[data-theme="dark"] .hero .btn {
     border-color: #e5e7eb !important;
 }
 
-/* ================= ADDITIONAL UTILITY FOR TEXT ================= */
+/* =========================
+   CARDS & PANELS
+========================= */
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .login-box,
+html[data-theme="dark"] .auth-box,
+html[data-theme="dark"] .auth-container,
+html[data-theme="dark"] .summary,
+html[data-theme="dark"] .info-panel,
+html[data-theme="dark"] .info-block,
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .table-section,
+html[data-theme="dark"] .container > div {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+html[data-theme="dark"] .auth-container,
+html[data-theme="dark"] .table-section,
+html[data-theme="dark"] .panel {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Panel text hierarchy */
+html[data-theme="dark"] .panel .small {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+}
+
+html[data-theme="dark"] .panel .k {
+    color: #94a3b8 !important;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+html[data-theme="dark"] .panel .v {
+    color: #e5e7eb !important;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+html[data-theme="dark"] .panel .total-price {
+    color: #22c55e !important;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+/* Colored panel accents */
+html[data-theme="dark"] .panel.green {
+    border-left: 6px solid #22c55e !important;
+}
+
+html[data-theme="dark"] .panel.purple {
+    border-left: 6px solid #a855f7 !important;
+}
+
+html[data-theme="dark"] .panel.blue {
+    border-left: 6px solid #38bdf8 !important;
+}
+
+html[data-theme="dark"] .panel.yellow {
+    border-left: 6px solid #facc15 !important;
+}
+
+/* =========================
+   ABOUT & SERVICES
+========================= */
+
+.about-box {
+    background-color: var(--bs-primary) !important;
+    color: #ffffff !important;
+    padding: 3rem;
+    border-radius: 1rem;
+}
+
+html[data-theme="dark"] .about-box {
+    background-color: #1f2937 !important;
+    color: #e5e7eb !important;
+}
+
+.services-box {
+    background-color: #ffffff !important;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+    color: #111 !important;
+}
+
+html[data-theme="dark"] .services-box {
+    background-color: #111827 !important;
+    color: #e5e7eb !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+}
+
+.services-box ul li {
+    margin-bottom: 0.75rem;
+}
+
+.contact-badge {
+    background-color: #28a745 !important;
+    color: #ffffff !important;
+    padding: 1rem 2.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+html[data-theme="dark"] .contact-badge {
+    background-color: #16a34a !important;
+    color: #e5e7eb !important;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
 html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6,
+html[data-theme="dark"] .auth-container h2 {
+    color: #ffffff !important;
+}
+
 html[data-theme="dark"] p,
 html[data-theme="dark"] li {
     color: #e5e7eb !important;
 }
-/* =========================
-   BOOKING TABLE DARK MODE
-========================= */
-html[data-theme="dark"] .table-section {
-    background: var(--bg-card) !important;
-    color: var(--text-main) !important;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.6) !important;
+
+html[data-theme="dark"] small,
+html[data-theme="dark"] .text-muted,
+html[data-theme="dark"] label,
+html[data-theme="dark"] .label,
+html[data-theme="dark"] .subtitle,
+html[data-theme="dark"] .auth-container p {
+    color: var(--text-muted) !important;
 }
 
+/* =========================
+   FORMS
+========================= */
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select,
+html[data-theme="dark"] .auth-container input {
+    background: #020617 !important;
+    color: #e5e7eb !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder,
+html[data-theme="dark"] .auth-container input::placeholder {
+    color: #94a3b8 !important;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+html[data-theme="dark"] .btn {
+    background: #22c55e !important;
+    border-color: #22c55e !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] button {
+    color: #22c55e !important;
+}
+
+html[data-theme="dark"] .btn-success {
+    background: #22c55e !important;
+    border-color: #22c55e !important;
+}
+
+html[data-theme="dark"] .btn-primary {
+    background: #2563eb !important;
+    border-color: #2563eb !important;
+}
+
+html[data-theme="dark"] .table-section .btn-delete {
+    color: #f87171 !important;
+}
+
+html[data-theme="dark"] .table-section .btn-delete:hover {
+    text-decoration: underline !important;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+html[data-theme="dark"] a,
+html[data-theme="dark"] .auth-container a {
+    color: #38bdf8 !important;
+}
+
+html[data-theme="dark"] a:hover {
+    color: #7dd3fc !important;
+}
+
+/* =========================
+   TABLES
+========================= */
+
+html[data-theme="dark"] table,
 html[data-theme="dark"] .table-section table {
     background: var(--bg-card) !important;
 }
 
+html[data-theme="dark"] th,
 html[data-theme="dark"] .table-section th {
-    background: #020617 !important;
     color: #ffffff !important;
+    background: #020617 !important;
 }
 
+html[data-theme="dark"] td,
 html[data-theme="dark"] .table-section td {
     color: var(--text-main) !important;
 }
@@ -321,6 +310,7 @@ html[data-theme="dark"] .table-section tbody tr:hover {
     background: #1f2937 !important;
 }
 
+/* Table status badges */
 html[data-theme="dark"] .table-section .status.pending {
     background: #fde68a !important;
     color: #92400e !important;
@@ -336,10 +326,12 @@ html[data-theme="dark"] .table-section .status.cancelled {
     color: #7f1d1d !important;
 }
 
-html[data-theme="dark"] .table-section .btn-delete {
-    color: #f87171 !important;
-}
+/* =========================
+   UTILITY COLORS
+========================= */
 
-html[data-theme="dark"] .table-section .btn-delete:hover {
-    text-decoration: underline !important;
+html[data-theme="dark"] .price,
+html[data-theme="dark"] .info-title,
+html[data-theme="dark"] .text-success {
+    color: #22c55e !important;
 }
