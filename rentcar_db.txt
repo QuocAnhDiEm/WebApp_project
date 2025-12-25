@@ -1,7 +1,7 @@
--- Drop existing database if exists
+-- =========================
+-- DROP & CREATE DATABASE
+-- =========================
 DROP DATABASE IF EXISTS rentcar_db;
-
--- Create database
 CREATE DATABASE rentcar_db;
 USE rentcar_db;
 
@@ -18,17 +18,20 @@ CREATE TABLE users (
 );
 
 -- =========================
--- CARS TABLE
+-- CARS TABLE (FULL VERSION)
 -- =========================
 CREATE TABLE cars (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    carId BIGINT NULL,
+    parent_id BIGINT NULL,
     name VARCHAR(100) NOT NULL,
+    brand VARCHAR(50) NOT NULL,
     type VARCHAR(50),
+    seats INT NOT NULL,
+    description TEXT,
     price_per_day DOUBLE NOT NULL,
     image VARCHAR(255),
     available BOOLEAN NOT NULL DEFAULT TRUE,
-    CONSTRAINT fk_car_parent FOREIGN KEY (carId) REFERENCES cars(id)
+    CONSTRAINT fk_car_parent FOREIGN KEY (parent_id) REFERENCES cars(id)
 );
 
 -- =========================
@@ -47,25 +50,100 @@ CREATE TABLE bookings (
 );
 
 -- =========================
--- SAMPLE DATA
---admin123
---test123
+-- SAMPLE USERS
+-- admin123
+-- test123
 -- =========================
 INSERT INTO users (name, email, phone, password, role)
 VALUES
-('Admin', 'admin@gmail.com', '0900000000',
- '$2a$10$ADmTtmL6sAC2ZkMNZfWiJOIrHv8v27/N7Ae.JDzC4HuILrYnjGuOm',
- 'ROLE_ADMIN'),
-('Test User', 'user@gmail.com', '0911111111',
- '$2a$10$mgvn715eNG/.4nlkXhvWqOV5HXJqTyGhGtaRarAjd0jIkj/bZe7Oy',
- 'ROLE_USER');
+(
+    'Admin',
+    'admin@gmail.com',
+    '0900000000',
+    '$2a$10$ADmTtmL6sAC2ZkMNZfWiJOIrHv8v27/N7Ae.JDzC4HuILrYnjGuOm',
+    'ROLE_ADMIN'
+),
+(
+    'Test User',
+    'user@gmail.com',
+    '0911111111',
+    '$2a$10$mgvn715eNG/.4nlkXhvWqOV5HXJqTyGhGtaRarAjd0jIkj/bZe7Oy',
+    'ROLE_USER'
+);
 
-INSERT INTO cars (name, type, price_per_day, image, available)
+-- =========================
+-- SAMPLE CARS
+-- =========================
+INSERT INTO cars
+(name, brand, type, seats, description, price_per_day, image, available)
 VALUES
-('BMW S1000RR', 'Moto', 180, '/images/cars/s1000rr.jpg', TRUE),
-('Kia Carnival', 'MPV', 120, '/images/cars/carnival.jpg', TRUE),
-('Toyota Hilux', 'Pickup', 95, '/images/cars/hilux.jpg', TRUE),
-('Audi R7', 'Sports', 220, '/images/cars/r7.jpg', TRUE),
-('Ford Transit', 'Van', 150, '/images/cars/transit.jpg', TRUE),
-('Toyota Vios', 'Sedan', 65, '/images/cars/vios.jpg', TRUE),
-('Mitsubishi Xpander', 'MPV', 90, '/images/cars/xpander.jpg', TRUE);
+(
+    'S1000RR',
+    'BMW',
+    'Moto',
+    2,
+    'High-performance superbike designed for speed and precision.',
+    180,
+    '/images/cars/s1000rr.jpg',
+    TRUE
+),
+(
+    'Carnival',
+    'Kia',
+    'MPV',
+    7,
+    'Spacious MPV suitable for family trips and long journeys.',
+    120,
+    '/images/cars/carnival.jpg',
+    TRUE
+),
+(
+    'Hilux',
+    'Toyota',
+    'Pickup',
+    5,
+    'Durable pickup truck ideal for both work and travel.',
+    95,
+    '/images/cars/hilux.jpg',
+    TRUE
+),
+(
+    'R7',
+    'Audi',
+    'Sports',
+    2,
+    'Luxury sports car with premium performance.',
+    220,
+    '/images/cars/r7.jpg',
+    TRUE
+),
+(
+    'Transit',
+    'Ford',
+    'Van',
+    16,
+    'Large van suitable for group transportation.',
+    150,
+    '/images/cars/transit.jpg',
+    TRUE
+),
+(
+    'Vios',
+    'Toyota',
+    'Sedan',
+    5,
+    'Economic sedan perfect for city driving.',
+    65,
+    '/images/cars/vios.jpg',
+    TRUE
+),
+(
+    'Xpander',
+    'Mitsubishi',
+    'MPV',
+    7,
+    'Modern MPV with comfort and safety for families.',
+    90,
+    '/images/cars/xpander.jpg',
+    TRUE
+);
