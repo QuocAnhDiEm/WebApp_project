@@ -1,0 +1,25 @@
+<!-- car-hover.html -->
+<div th:fragment="carHoverFragment(car)">
+    <div class="car-hover">
+        <!-- Car Name -->
+        <h5 th:text="${car.name}">Car Name</h5>
+
+        <!-- Brand and Seats -->
+        <p>Brand: <strong th:text="${car.brand}">Brand</strong></p>
+        <p>Seats: <strong th:text="${car.seats}">0</strong></p>
+
+        <!-- Description (fallback to NO DESCRIPTION) -->
+        <p class="desc" th:text="${car.description} ?: 'NO DESCRIPTION'">
+            NO DESCRIPTION
+        </p>
+
+        <!-- Price per day -->
+        <div class="price">
+            $<span th:text="${car.pricePerDay}">0.00</span>
+            <small>/ day</small>
+        </div>
+
+        <!-- Hint -->
+        <span class="hint">Click to book</span>
+    </div>
+</div>

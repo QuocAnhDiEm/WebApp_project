@@ -1,31 +1,58 @@
+<!-- fragments/navbar.html -->
 <nav th:fragment="navbar" class="topbar">
-    <a class="navbar-brand" th:href="@{/}">
-        <img th:src="@{/images/logo-Photoroom.png}" height="30" alt="RentCar">
-        RentCar
-    </a>
+    <!-- Left side: Brand + Links -->
+    <div class="nav-left">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/images/logo-Photoroom.png}" height="30" alt="RentCar">
+            RentCar
+        </a>
 
-    <div class="nav">
         <a th:href="@{/}">Home</a>
         <a th:href="@{/cars}">Cars</a>
 
-        <!-- Show Login/Register if NOT authenticated -->
-        <a th:if="${not #authorization.expr('isAuthenticated()')}" th:href="@{/auth/login}">Login</a>
-        <a th:if="${not #authorization.expr('isAuthenticated()')}" th:href="@{/auth/register}">Register</a>
+        <!-- Admin: Dashboard link on left -->
+        <span sec:authorize="true">
+            <a th:href="@{/admin/dashboard}">Dashboard</a>
+        </span>
+    </div>
 
-        <!-- Show Admin Dashboard ONLY for ADMIN role -->
-        <a th:if="${#authorization.expr('hasRole(''ADMIN'')')}" th:href="@{/admin/dashboard}">Dashboard</a>
+    <!-- Right side: User info + Auth + Dark mode -->
+    <div class="nav-right">
+        <!-- Not authenticated -->
+        <span sec:authorize="!isAuthenticated()">
+            <a th:href="@{/auth/login}">Login</a>
+            <a th:href="@{/auth/register}">Register</a>
+        </span>
 
-        <!-- Show username + Logout if authenticated -->
-        <span th:if="${#authorization.expr('isAuthenticated()')}">
-            Hello, <strong th:text="${#authentication.name}">User</strong> |
+        <!-- Regular user: Profile + Logout + Roles -->
+        <span sec:authorize="isAuthenticated() and !hasAuthority('ADMIN')">
+            <a th:href="@{/profile}">Profile</a>
+            |
+            Hello, <strong th:text="${#authentication.name}">User</strong>
+            (<span th:each="role, iterStat : ${#authentication.authorities}">
+                <span th:text="${role.authority.replace('ROLE_', '')}"></span>
+                <span th:if="${!iterStat.last}">, </span>
+            </span>)
+            |
             <form th:action="@{/logout}" method="post">
-                <button type="submit">
-                    Logout
-                </button>
+                <button type="submit" class="logout-btn">Logout</button>
             </form>
         </span>
 
-        <!-- Public dark mode toggle -->
+        <!-- Admin: Logout + Roles -->
+        <span sec:authorize="hasAuthority('ADMIN')">
+            Hello, <strong th:text="${#authentication.name}">Admin</strong>
+            (<span th:each="role, iterStat : ${#authentication.authorities}">
+                <span th:text="${role.authority.replace('ROLE_', '')}"></span>
+                <span th:if="${!iterStat.last}">, </span>
+            </span>)
+            |
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </span>
+
+        <!-- Dark mode toggle -->
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
     </div>
 </nav>

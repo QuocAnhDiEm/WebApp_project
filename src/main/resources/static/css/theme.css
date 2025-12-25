@@ -272,6 +272,14 @@ html[data-theme="dark"] .table-section .btn-delete {
 html[data-theme="dark"] .table-section .btn-delete:hover {
     text-decoration: underline !important;
 }
+html[data-theme="dark"] .btn-add-car {
+    background-color: #2563eb !important; /* darker green for dark mode */
+    color: #ffffff !important; /* lighter text */
+}
+
+html[data-theme="dark"] .btn-add-car:hover {
+    background-color: #7784cb !important; /* darker hover */
+}
 
 /* =========================
    LINKS
@@ -334,4 +342,76 @@ html[data-theme="dark"] .price,
 html[data-theme="dark"] .info-title,
 html[data-theme="dark"] .text-success {
     color: #22c55e !important;
+}
+
+/* Search box inputs and selects in dark mode */
+[data-theme="dark"] .search-box input,
+[data-theme="dark"] .search-box select {
+    background-color: #1e1e1e;
+    color: #fff;
+    border-color: #333;
+}
+/* profile dark mode */
+[data-theme="dark"] .profile-card {
+    background: #1e1e1e;
+}
+
+[data-theme="dark"] .profile-item {
+    border-color: #333;
+}
+/* =========================
+   Dark Mode Support
+========================= */
+
+[data-theme="dark"] body {
+    background-color: #1e1e2f;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] form {
+    background-color: #2a2a3d;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] h1 {
+    color: #4ade80;
+}
+
+[data-theme="dark"] label {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] input[type="file"] {
+    background-color: #3a3a4f;
+    border: 1px solid #555;
+    color: #fff;
+}
+
+[data-theme="dark"] input[type="text"]:focus,
+[data-theme="dark"] input[type="number"]:focus,
+[data-theme="dark"] input[type="file"]:focus {
+    border-color: #4ade80;
+}
+
+[data-theme="dark"] input[type="checkbox"] {
+    accent-color: #4ade80;
+}
+
+[data-theme="dark"] button {
+    background-color: #4ade80;
+    color: #1e1e2f;
+}
+
+[data-theme="dark"] button:hover {
+    background-color: #22c55e;
+}
+
+[data-theme="dark"] a {
+    color: #4ade80;
+}
+
+[data-theme="dark"] a:hover {
+    color: #22c55e;
 }

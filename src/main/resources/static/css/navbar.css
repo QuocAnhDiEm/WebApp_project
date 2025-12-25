@@ -8,22 +8,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* ensures responsiveness */
-    
-    /* Sticky navbar */
+    flex-wrap: wrap;
     position: sticky;
     top: 0;
     z-index: 1000;
-    
-    /* Blur effect on scroll */
     transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
 }
 
-/* Blurred state when scrolling */
 .topbar.scrolled {
-    background: rgba(20, 180, 75, 0.8); /* semi-transparent version of your green */
+    background: rgba(20, 180, 75, 0.8);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Flex containers for left and right */
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
 /* Navbar brand/logo */
@@ -37,28 +40,20 @@
     text-decoration: none;
 }
 
-/* Navbar links container */
-.nav {
-    display: flex;
-    align-items: center;
-    gap: 29px; /* uniform spacing between links/buttons */
-    flex-wrap: wrap;
-}
-
 /* Standard links */
-.nav a {
+.nav-left a, .nav-right a {
     color: #e9f9ee;
     text-decoration: none;
     font-size: 20px;
     transition: opacity 0.2s ease;
 }
 
-.nav a:hover {
+.nav-left a:hover, .nav-right a:hover {
     opacity: 0.85;
 }
 
 /* Inline username + logout */
-.nav span {
+.nav-right span {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -66,14 +61,12 @@
     color: #e9f9ee;
 }
 
-/* Fix for logout form inside nav span */
-.nav span form {
+.nav-right span form {
     display: inline;
     margin: 0;
 }
 
-/* Logout button inside span */
-.nav span button {
+.nav-right span button {
     background: transparent;
     border: none;
     color: #e9f9ee;
@@ -84,15 +77,15 @@
     transition: opacity 0.2s ease;
 }
 
-.nav span button:hover {
+.nav-right span button:hover {
     opacity: 0.85;
 }
 
-.theme-toggle { 
-    margin-left: 16px; 
-    background: transparent; 
-    border: 0; 
+.theme-toggle {
+    margin-left: 16px;
+    background: transparent;
+    border: 0;
     color: #fff;
-    font-size: 23px; 
-    cursor: pointer; 
+    font-size: 23px;
+    cursor: pointer;
 }

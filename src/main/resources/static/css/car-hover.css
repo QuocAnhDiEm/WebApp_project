@@ -1,0 +1,70 @@
+/* clickable card */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* card hover */
+.car-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.car-card:hover {
+    transform: scale(1.03);
+}
+
+/* image size */
+.car-card img {
+    height: 250px;
+    object-fit: cover;
+}
+
+/* hover overlay */
+.car-hover {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.car-card:hover .car-hover {
+    opacity: 1;
+}
+
+.car-hover h5 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.car-hover .price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #00ff88;
+    margin-top: 10px;
+}
+
+.car-hover .hint {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.car-hover .desc {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 8px 0;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;   /* 👈 max 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

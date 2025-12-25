@@ -46,3 +46,20 @@ body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; }
 .price { font-size: 2.2rem; color: var(--green); font-weight: 900; }
 .btn-book { background: var(--green); color: white; padding: 14px 50px; border-radius: 50px; font-weight: bold; }
 .btn-book:hover { background: #218838; } 
+.search-box {
+    display: flex;
+    gap: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.search-box input,
+.search-box select {
+    border-radius: 999px;
+}
+
+.search-box button {
+    border-radius: 999px;
+    font-weight: 600;
+}
+

@@ -23,4 +23,31 @@ public class CarServiceImpl implements CarService {
     public Car getCarById(Long id) {
         return carRepository.findById(id).orElse(null);
     }
+
+    // 🔍 Search (name + brand)
+    @Override
+    public List<Car> searchCars(String keyword) {
+        if (keyword == null || keyword.isBlank()) {
+            return getAvailableCars();
+        }
+        return carRepository.search(keyword);
+    }
+
+    // 🎯 Filter by brand
+    @Override
+    public List<Car> filterByBrand(String brand) {
+        if (brand == null || brand.isBlank()) {
+            return getAvailableCars();
+        }
+        return carRepository.findByBrandIgnoreCase(brand);
+    }
+
+    // 🎯 Filter by seats
+    @Override
+    public List<Car> filterBySeats(Integer seats) {
+        if (seats == null) {
+            return getAvailableCars();
+        }
+        return carRepository.findBySeats(seats);
+    }
 }

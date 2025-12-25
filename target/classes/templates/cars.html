@@ -8,6 +8,7 @@
     <link th:href="@{/css/style.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/car-hover.css}">
     <script th:src="@{/js/theme-toggle.js}" defer></script>
 </head>
 
@@ -19,38 +20,91 @@
 <!-- ================= CARS LIST ================= -->
 <div class="container my-5">
 
-    <h2 class="text-center mb-5 fw-bold display-4" style="color: #28a745;">
+    <h2 class="text-center mb-4 fw-bold display-4" style="color: #28a745;">
         Our Car Collection
     </h2>
 
+    <!-- 🔍 SEARCH + FILTER -->
+    <form method="get" action="/cars" class="search-box mb-5">
+
+        <input type="text"
+               name="keyword"
+               class="form-control form-control-lg"
+               placeholder="Search by name or brand"
+               th:value="${keyword}">
+
+        <select name="brand" class="form-select form-select-lg">
+            <option value="">All Brands</option>
+            <option value="BMW">BMW</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Kia">Kia</option>
+            <option value="Audi">Audi</option>
+            <option value="Ford">Ford</option>
+            <option value="Mitsubishi">Mitsubishi</option>
+        </select>
+
+        <select name="seats" class="form-select form-select-lg">
+            <option value="">Seats</option>
+            <option value="2">2</option>
+            <option value="5">5</option>
+            <option value="7">7</option>
+            <option value="16">16</option>
+        </select>
+
+        <button class="btn btn-success btn-lg px-4">
+            Filter
+        </button>
+    </form>
+
+    <!-- ================= CAR GRID ================= -->
     <div class="row row-cols-1 row-cols-md-3 g-5">
 
-        <!-- LOOP CARS FROM DATABASE -->
         <div class="col" th:each="car : ${cars}">
-            <div class="card h-100 border-0 shadow">
+            <!-- ENTIRE CARD CLICKABLE -->
+            <a th:href="@{/cars/book/{id}(id=${car.id})}" class="card-link">
 
-                <!-- CAR IMAGE -->
-                <img th:src="@{${car.image}}"
-                     class="card-img-top"
-                     style="height:250px; object-fit:cover"
-                     alt="Car Image">
+                <div class="card h-100 border-0 shadow car-card">
 
-                <div class="card-body text-center">
-                    <h4 class="fw-bold" th:text="${car.name}"></h4>
+                    <!-- IMAGE -->
+                    <img th:src="@{${car.image}}"
+                         class="card-img-top"
+                         alt="Car Image">
 
-                    <p class="fs-3 text-success fw-bold">
-                        $<span th:text="${car.pricePerDay}"></span>
-                        <small>/day</small>
-                    </p>
+                    <!-- BASIC INFO -->
+                    <div class="card-body text-center">
+                        <h4 class="fw-bold" th:text="${car.name}"></h4>
 
-                    <!-- BOOK BUTTON -->
-                    <a th:href="@{/booking/form(car=${car.id})}" class="btn btn-success btn-lg rounded-pill px-5">
-                        Book Now
-                    </a>
+                        <p class="text-muted mb-1">
+                            <span th:text="${car.brand}"></span> •
+                            <span th:text="${car.seats}"></span> seats
+                        </p>
+
+                        <p class="fs-3 text-success fw-bold">
+                            $<span th:text="${car.pricePerDay}"></span>
+                            <small>/day</small>
+                        </p>
+                    </div>
+
+                    <!-- 🔥 HOVER INFO -->
+                    <div class="car-hover">
+                        <h5 th:text="${car.name}"></h5>
+                        <p><strong>Brand:</strong> <span th:text="${car.brand}"></span></p>
+                        <p><strong>Seats:</strong> <span th:text="${car.seats}"></span></p>
+
+                        <!-- Description with fallback -->
+                        <p class="desc" th:text="${car.description} ?: 'NO DESCRIPTION'">
+                            NO DESCRIPTION
+                        </p>
+
+                        <p class="price">
+                            $<span th:text="${car.pricePerDay}"></span> / day
+                        </p>
+                        <span class="hint">Click to book</span>
+                    </div>
+
 
                 </div>
-
-            </div>
+            </a>
         </div>
 
     </div>

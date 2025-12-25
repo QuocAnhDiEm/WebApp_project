@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Car</title>
+    <link rel="stylesheet" th:href="@{/css/add-car.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <script th:src="@{/js/theme-toggle.js}" defer></script>
+</head>
+
+<body>
+    <h1>Add New Car</h1>
+    <form th:action="@{/admin/car/add}" th:object="${car}" method="post" enctype="multipart/form-data">
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required />
+
+        <label>Brand:</label>
+        <input type="text" th:field="*{brand}" required />
+
+        <label>Seats:</label>
+        <input type="number" th:field="*{seats}" min="1" required />
+
+        <label>Price per day:</label>
+        <input type="number" th:field="*{pricePerDay}" min="0" required />
+
+        <label>Available:</label>
+        <input type="checkbox" th:field="*{available}" />
+
+        <!-- ✅ Add image upload -->
+        <label>Car Image:</label>
+        <input type="file" th:field="*{imageFile}" accept="image/*" required 
+            onchange="previewImage(event)" />
+        <img id="preview" src="#" alt="Image Preview" style="max-width:200px; display:none;"/>
+
+        <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('preview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+        </script>
+
+
+        <button type="submit">Add Car</button>
+    </form>
+
+
+    <a th:href="@{/admin/dashboard}">Back to Dashboard</a>
+</body>
+</html>

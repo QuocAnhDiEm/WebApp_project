@@ -159,3 +159,18 @@ tbody tr:hover {
 .btn-delete:hover {
     text-decoration: underline;
 }
+.btn-add-car {
+    display: inline-block;
+    margin-left: 20px;
+    padding: 8px 16px;
+    background-color: #14b44b;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.btn-add-car:hover {
+    background-color: #0e8a38;
+}

@@ -15,34 +15,22 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
-
-            // ✅ AUTHORIZATION (ONLY ONCE)
             .authorizeHttpRequests(auth -> auth
-                // 🌍 Public pages
-                .requestMatchers(
-                    "/", 
-                    "/cars",
-                    "/auth/login",
-                    "/auth/register",
-                    "/css/**",
-                    "/js/**",
-                    "/images/**"
-                ).permitAll()
-
-                // 🔐 Admin only
+                // Public
+                .requestMatchers("/", "/cars", "/auth/login", "/auth/register", "/css/**", "/js/**", "/images/**").permitAll()
+                
+                // Admin only
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-
-                // 👤 Logged-in users
-                .requestMatchers("/booking/**").authenticated()
-
-                // 🔚 MUST BE LAST
+                
+                // Authenticated users
+                .requestMatchers("/booking/**", "/profile/**").authenticated()
+                
+                // Fallback
                 .anyRequest().authenticated()
             )
-
-            // 🔐 Login
             .formLogin(form -> form
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/login")
@@ -50,8 +38,6 @@ public class SecurityConfig {
                 .failureUrl("/auth/login?error")
                 .permitAll()
             )
-
-            // 🚪 Logout
             .logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
@@ -61,16 +47,13 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 🔐 Password encoder (bcrypt)
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // 🔑 Authentication manager
     @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration config) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 }
