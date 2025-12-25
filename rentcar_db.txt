@@ -18,7 +18,7 @@ CREATE TABLE users (
 );
 
 -- =========================
--- CARS TABLE (FULL VERSION)
+-- CARS TABLE
 -- =========================
 CREATE TABLE cars (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -35,7 +35,7 @@ CREATE TABLE cars (
 );
 
 -- =========================
--- BOOKINGS TABLE
+-- BOOKINGS TABLE (FIXED)
 -- =========================
 CREATE TABLE bookings (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -43,6 +43,13 @@ CREATE TABLE bookings (
     car_id BIGINT NOT NULL,
     pick_up_date DATE NOT NULL,
     drop_off_date DATE NOT NULL,
+    pickup_location VARCHAR(255),
+    dropoff_location VARCHAR(255),
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    email VARCHAR(100),
+    phone VARCHAR(20),
+    notes TEXT,
     total_price DOUBLE NOT NULL,
     status VARCHAR(50) NOT NULL,
     CONSTRAINT fk_booking_user FOREIGN KEY (user_id) REFERENCES users(id),
@@ -51,99 +58,22 @@ CREATE TABLE bookings (
 
 -- =========================
 -- SAMPLE USERS
--- admin123
--- test123
 -- =========================
 INSERT INTO users (name, email, phone, password, role)
 VALUES
-(
-    'Admin',
-    'admin@gmail.com',
-    '0900000000',
-    '$2a$10$ADmTtmL6sAC2ZkMNZfWiJOIrHv8v27/N7Ae.JDzC4HuILrYnjGuOm',
-    'ROLE_ADMIN'
-),
-(
-    'Test User',
-    'user@gmail.com',
-    '0911111111',
-    '$2a$10$mgvn715eNG/.4nlkXhvWqOV5HXJqTyGhGtaRarAjd0jIkj/bZe7Oy',
-    'ROLE_USER'
-);
+('Admin', 'admin@gmail.com', '0900000000', '$2a$10$ADmTtmL6sAC2ZkMNZfWiJOIrHv8v27/N7Ae.JDzC4HuILrYnjGuOm', 'ADMIN'),
+('Admin2', 'admin2@gmail.com', '0900000000', '$2a$10$ADmTtmL6sAC2ZkMNZfWiJOIrHv8v27/N7Ae.JDzC4HuILrYnjGuOm', 'ADMIN'),
+('Test User', 'user@gmail.com', '0911111111', '$2a$10$mgvn715eNG/.4nlkXhvWqOV5HXJqTyGhGtaRarAjd0jIkj/bZe7Oy', 'USER');
 
 -- =========================
 -- SAMPLE CARS
 -- =========================
-INSERT INTO cars
-(name, brand, type, seats, description, price_per_day, image, available)
+INSERT INTO cars (name, brand, type, seats, description, price_per_day, image, available)
 VALUES
-(
-    'S1000RR',
-    'BMW',
-    'Moto',
-    2,
-    'High-performance superbike designed for speed and precision.',
-    180,
-    '/images/cars/s1000rr.jpg',
-    TRUE
-),
-(
-    'Carnival',
-    'Kia',
-    'MPV',
-    7,
-    'Spacious MPV suitable for family trips and long journeys.',
-    120,
-    '/images/cars/carnival.jpg',
-    TRUE
-),
-(
-    'Hilux',
-    'Toyota',
-    'Pickup',
-    5,
-    'Durable pickup truck ideal for both work and travel.',
-    95,
-    '/images/cars/hilux.jpg',
-    TRUE
-),
-(
-    'R7',
-    'Audi',
-    'Sports',
-    2,
-    'Luxury sports car with premium performance.',
-    220,
-    '/images/cars/r7.jpg',
-    TRUE
-),
-(
-    'Transit',
-    'Ford',
-    'Van',
-    16,
-    'Large van suitable for group transportation.',
-    150,
-    '/images/cars/transit.jpg',
-    TRUE
-),
-(
-    'Vios',
-    'Toyota',
-    'Sedan',
-    5,
-    'Economic sedan perfect for city driving.',
-    65,
-    '/images/cars/vios.jpg',
-    TRUE
-),
-(
-    'Xpander',
-    'Mitsubishi',
-    'MPV',
-    7,
-    'Modern MPV with comfort and safety for families.',
-    90,
-    '/images/cars/xpander.jpg',
-    TRUE
-);
+('S1000RR','BMW','Moto',2,'High-performance superbike designed for speed and precision.',180,'/images/cars/s1000rr.jpg',TRUE),
+('Carnival','Kia','MPV',7,'Spacious MPV suitable for family trips and long journeys.',120,'/images/cars/carnival.jpg',TRUE),
+('Hilux','Toyota','Pickup',5,'Durable pickup truck ideal for both work and travel.',95,'/images/cars/hilux.jpg',TRUE),
+('R7','Audi','Sports',2,'Luxury sports car with premium performance.',220,'/images/cars/r7.jpg',TRUE),
+('Transit','Ford','Van',16,'Large van suitable for group transportation.',150,'/images/cars/transit.jpg',TRUE),
+('Vios','Toyota','Sedan',5,'Economic sedan perfect for city driving.',65,'/images/cars/vios.jpg',TRUE),
+('Xpander','Mitsubishi','MPV',7,'Modern MPV with comfort and safety for families.',90,'/images/cars/xpander.jpg',TRUE);
