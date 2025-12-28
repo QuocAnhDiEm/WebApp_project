@@ -34,7 +34,7 @@
 
         <form th:action="@{/booking/payment}" method="post" th:object="${bookingDTO}">
             <!-- hidden carId -->
-            <input type="hidden" name="carId" th:value="${carId}" />
+            <input type="hidden" name="carId" th:value="${car.id}" />
 
             <div class="section-title">Personal Information</div>
             <div class="grid">

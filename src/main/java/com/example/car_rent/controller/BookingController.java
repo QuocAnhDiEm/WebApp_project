@@ -59,6 +59,9 @@ public class BookingController {
         if (authentication == null || !authentication.isAuthenticated()) {
             return "redirect:/auth/login";
         }
+        if (bookingDTO.getCarId() == null) {
+            return "redirect:/cars";
+        }
 
         // Check for validation errors
         if (result.hasErrors()) {
